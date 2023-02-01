@@ -12,7 +12,7 @@ const NewRoom = () => {
   const [hotelId, setHotelId] = useState(undefined);
   const [rooms, setRooms] = useState([]);
 
-  const { data, loading, error } = useFetch("/hotels");
+  const { data, loading, error } = useFetch("https://rose-lucky-dolphin.cyclic.app/api/hotels");
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -22,7 +22,7 @@ const NewRoom = () => {
     e.preventDefault();
     const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
     try {
-      await axios.post(`/rooms/${hotelId}`, { ...info, roomNumbers });
+      await axios.post(`https://rose-lucky-dolphin.cyclic.app/api/rooms/${hotelId}`, { ...info, roomNumbers });
       e.target.reset();
 
     } catch (err) {
