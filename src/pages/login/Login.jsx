@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     dispatchAuth({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("/auth/login", credentials);
+      const res = await axios.post("https://rose-lucky-dolphin.cyclic.app/api/auth/login", credentials);
       if (res.data.isAdmin) {
         dispatchAuth({ type: "LOGIN_SUCCESS", payload: res.data.details });
 

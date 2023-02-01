@@ -31,7 +31,7 @@ const New = ({ inputs, title }) => {
         img: url,
       };
 
-      await axios.post("/auth/register", newUser);
+      await axios.post("https://rose-lucky-dolphin.cyclic.app/api/auth/register", newUser);
       e.target.reset();
     } catch (err) {
       console.log(err);

@@ -11,7 +11,7 @@ const Datatable = () => {
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState();
 
-  const { data} = useFetch(`/${path}`);
+  const { data} = useFetch(`https://rose-lucky-dolphin.cyclic.app/api/${path}`);
 
   useEffect(() => {
     setList(data);
@@ -19,7 +19,7 @@ const Datatable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/${path}/${id}`);
+      await axios.delete(`https://rose-lucky-dolphin.cyclic.app/api/${path}/${id}`);
       setList(list.filter((item) => item._id !== id));
     } catch (err) {}
   };
