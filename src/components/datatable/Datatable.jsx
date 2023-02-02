@@ -1,12 +1,11 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
 import { Link ,useLocation} from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
-const Datatable = () => {
+const Datatable = ({columns}) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState();
@@ -15,13 +14,17 @@ const Datatable = () => {
 
   useEffect(() => {
     setList(data);
+    console.log(data,"dataddddd");
   }, [data]);
 
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://rose-lucky-dolphin.cyclic.app/api/${path}/${id}`);
       setList(list.filter((item) => item._id !== id));
-    } catch (err) {}
+      alert("Item Deleted Successfully")
+    } catch (err) {
+      console.log(err);
+    }
   };
   const actionColumn = [
     {
@@ -56,7 +59,7 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={columns.concat(actionColumn)}
         pageSize={8}
         rowsPerPageOptions={[9]}
         checkboxSelection

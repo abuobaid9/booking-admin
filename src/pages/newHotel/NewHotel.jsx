@@ -12,7 +12,7 @@ const NewHotel = () => {
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
 
-  const { data, loading, error } = useFetch("https://rose-lucky-dolphin.cyclic.app/api/rooms");
+  const { data, loading } = useFetch("https://rose-lucky-dolphin.cyclic.app/api/rooms");
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -53,6 +53,7 @@ const NewHotel = () => {
       };
 
       await axios.post("https://rose-lucky-dolphin.cyclic.app/api/hotels", newhotel);
+      alert("added")
       e.target.reset();
 
     } catch (err) {console.log(err)}
